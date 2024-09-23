@@ -11,6 +11,7 @@ import java.io.FileReader;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 
 import elements.registroUsuarioElement;
@@ -66,16 +67,18 @@ public class registroUsuarioPage extends PageObject {
 	}
 
 	public void confirmRegister() {
-		WebDriverWait wait = new WebDriverWait(getDriver(), 5);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 10);
 		find(btnSignUp).click();
 		System.out.println("Se realizo click en el botón SignUp");        
         try {
-            wait.until(ExpectedConditions.alertIsPresent());
+            Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+            String alertText = alert.getText();
+            System.out.println("Texto de la alerta: " + alertText);
+            alert.accept();
+            System.out.println("Alerta aceptada.");
             Serenity.takeScreenshot();
-            getDriver().switchTo().alert().accept();
-            System.out.println("Se aceptó el registro del usuario.");
         } catch (Exception e) {
-            System.out.println("No se encontró la ventana emergente de registro.");
+            System.out.println("No se detectó la ventana emergente.");
         }
         Serenity.takeScreenshot();
 	}

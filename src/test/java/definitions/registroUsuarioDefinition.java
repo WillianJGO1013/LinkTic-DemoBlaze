@@ -20,7 +20,7 @@ public class registroUsuarioDefinition {
     	registroUsuarioSteps.openPage();
     }
 
-    @Given("^El usuario ingresa al módulo de registro de usuario$")
+    @When("^El usuario ingresa al módulo de registro de usuario$")
     public void el_usuario_ingresa_al_módulo_de_registro_de_usuario() throws Throwable {
     	registroUsuarioSteps.openUserRegister();
     }

@@ -1,6 +1,5 @@
 package definitions;
 
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.thucydides.core.annotations.Steps;
@@ -14,7 +13,7 @@ public class loginUsuarioDefinition {
 	
 	ExcelReader excelReader = new ExcelReader();
     
-    @Given("^El usuario ingresa al módulo de login de usuario$")
+	@When("^El usuario ingresa al módulo de login de usuario$")
     public void elUsuarioIngresaAlMóduloDeLoginDeUsuario() throws Throwable {
     	loginUsuarioSteps.openUserLogin();
     }

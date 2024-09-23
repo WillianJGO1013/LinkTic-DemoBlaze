@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -68,12 +69,14 @@ public class contactPage extends PageObject {
 		find(btnSend).click();
 		System.out.println("Se realizo click en el botón Send Message");
         try {
-            wait.until(ExpectedConditions.alertIsPresent());
+        	Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+            String alertText = alert.getText();
+            System.out.println("Texto de la alerta: " + alertText);
+            alert.accept();
+            System.out.println("Alerta aceptada.");
             Serenity.takeScreenshot();
-            getDriver().switchTo().alert().accept();
-            System.out.println("Se aceptó el envío del mensaje.");
         } catch (Exception e) {
-            System.out.println("No se encontró la ventana emergente de registro.");
+            System.out.println("No se detectó la ventana emergente.");
         }
         Serenity.takeScreenshot();
 	}
